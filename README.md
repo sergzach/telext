@@ -3,6 +3,7 @@ An very simple library to create telegram bots with minimum customization.
 
 # A simple example of "echo" bot
 
+```python
 import asyncio
 import os
 
@@ -38,3 +39,4 @@ async def main():
 
 if __name__ == '__main__':
     asyncio.get_event_loop().run_until_complete(main())
+```
