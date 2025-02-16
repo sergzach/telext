@@ -1,5 +1,5 @@
 """
-Getting an incomming message and repeat it - back to the user.
+Draw graph and send it to a user - as answer to any message.
 """
 
 import asyncio
