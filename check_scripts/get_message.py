@@ -5,7 +5,7 @@ Getting incomming messages etc. - in raw mode.
 import asyncio
 import os
 
-from telext import RawTelegramBot
+from telext import RawTelegramBot, TelegramCustomApi
 
 
 async def main():
@@ -13,9 +13,10 @@ async def main():
         telegram_server_url=os.environ['TELEGRAM_SERVER_URL'],
         token=os.environ['BOT_TOKEN']
     )
+    telegram_custom_api = TelegramCustomApi(telegram_bot_client)
 
     while True:
-        last_updates_raw_response = await telegram_bot_client.get_next_update(
+        last_updates_raw_response = await telegram_custom_api.get_next_update(
             forget_previous_updates=True
         )
 
