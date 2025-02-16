@@ -164,8 +164,8 @@ class RawTelegramBot:
             self,
             *,
             chat_id,
-            photo: BinaryIO | None = None,
-            document: BinaryIO | None = None,
+            photo: BinaryIO | BytesIO | None = None,
+            document: BinaryIO | BytesIO | None = None,
             caption: str = None
     ) -> RawResponse:
         if not any([photo, document]):
