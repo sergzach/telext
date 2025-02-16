@@ -79,7 +79,12 @@ class RawTelegramBot:
 
         return raw_response
 
-    async def send_message(self, *, chat_id: int | str, text: str):
+    async def send_text_message(
+            self,
+            *,
+            chat_id: int | str,
+            text: str
+    ):
         data = dict(
             chat_id=chat_id,
             text=text
@@ -89,3 +94,23 @@ class RawTelegramBot:
             method='sendMessage',
             **data
         )
+
+    async def send_photo_from_image_url(
+            self,
+            *,
+            chat_id,
+            url: str | None = None,
+            caption: str = None
+    ):
+        data = dict(photo=url)
+
+        if caption is not None:
+            data['caption'] = caption
+
+        await self.get_with_response(
+            method='sendPhoto',
+            chat_id=chat_id,
+            **data
+        )
+
+

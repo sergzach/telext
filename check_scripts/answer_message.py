@@ -27,7 +27,7 @@ async def main():
             chat_id = the_only_message['chat']['id']
             text = the_only_message['text']
 
-            await telegram_bot_client.send_message(
+            await telegram_bot_client.send_text_message(
                 chat_id=chat_id,
                 text=f'I am repeating your message: {text}.'
             )
