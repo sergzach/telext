@@ -1,7 +1,7 @@
 # telext
 A small and extendable library to create telegram bots with minimum customization.
 
-It's easy to add new methods to `TelegramCustomApi` according to fast-growing https://core.telegram.org/bots/api.
+It's easy to add new methods to small "blank" class — `TelegramCustomApi`, according to fast-growing https://core.telegram.org/bots/api.
 
 ### A simple example of "echo" bot
 
