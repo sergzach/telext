@@ -1,2 +1,2 @@
 # telext
-An extendable library with minimum customization to create telegram bots.
+An very simple library to create telegram bots with minimum customization.
