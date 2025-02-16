@@ -5,7 +5,7 @@ Getting an incomming message and repeat it - back to the user.
 import asyncio
 import os
 
-from telext import RawTelegramBot, TelegramCustomApi
+from telext import RawTelegramBot, CustomTelegramApi
 
 
 async def main():
@@ -13,7 +13,7 @@ async def main():
         telegram_server_url=os.environ['TELEGRAM_SERVER_URL'],
         token=os.environ['BOT_TOKEN']
     )
-    telegram_custom_api = TelegramCustomApi(telegram_bot_client)
+    telegram_custom_api = CustomTelegramApi(telegram_bot_client)
 
     while True:
         last_updates_raw_response = await telegram_custom_api.get_next_update(

@@ -15,7 +15,7 @@ It's easy to add new methods to small "blank" class — `TelegramCustomApi`, acc
 import asyncio
 import os
 
-from telext import RawTelegramBot, TelegramCustomApi
+from telext import RawTelegramBot, CustomTelegramApi
 
 
 async def main():
@@ -23,7 +23,7 @@ async def main():
         telegram_server_url="https://api.telegram.org",
         token=os.environ['BOT_TOKEN']
     )
-    telegram_custom_api = TelegramCustomApi(telegram_bot_client)
+    telegram_custom_api = CustomTelegramApi(telegram_bot_client)
 
     while True:
         last_updates_raw_response = await telegram_custom_api.get_next_update(
@@ -59,7 +59,7 @@ from io import BytesIO
 
 import plotly.express as px
 
-from telext import RawTelegramBot, TelegramCustomApi
+from telext import RawTelegramBot, CustomTelegramApi
 
 
 def _draw_graph_in_memory() -> BytesIO:
@@ -79,7 +79,7 @@ async def main():
         telegram_server_url="https://api.telegram.org",
         token=os.environ['BOT_TOKEN']
     )
-    telegram_custom_api = TelegramCustomApi(telegram_bot_client)
+    telegram_custom_api = CustomTelegramApi(telegram_bot_client)
 
     while True:
         last_updates_raw_response = await telegram_custom_api.get_next_update(

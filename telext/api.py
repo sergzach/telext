@@ -8,7 +8,7 @@ class InputDataValidationError(Exception):
     pass
 
 
-class TelegraCustomApiBase:
+class CustomTelegramApiBase:
     # Except (empty list):
     # - chat_member,
     # - message_reaction,
@@ -55,7 +55,7 @@ class TelegraCustomApiBase:
         return raw_response
 
 
-class TelegramCustomApi(TelegraCustomApiBase):
+class CustomTelegramApi(CustomTelegramApiBase):
     """
     An Extendable API: https://core.telegram.org/bots/api.
     """
