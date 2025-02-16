@@ -102,7 +102,6 @@ async def main():
                     ),
                 )
             )
-            l = 4
 
         await asyncio.sleep(0.5)
 
