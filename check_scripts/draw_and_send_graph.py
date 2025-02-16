@@ -28,10 +28,10 @@ async def main():
         telegram_server_url=os.environ['TELEGRAM_SERVER_URL'],
         token=os.environ['BOT_TOKEN']
     )
-    telegram_custom_api = CustomTelegramApi(telegram_bot_client)
+    custom_telegram_api = CustomTelegramApi(telegram_bot_client)
 
     while True:
-        last_updates_raw_response = await telegram_custom_api.get_next_update(
+        last_updates_raw_response = await custom_telegram_api.get_next_update(
             forget_previous_updates=True
         )
         result = last_updates_raw_response.json['result']
@@ -43,7 +43,7 @@ async def main():
             graph_in_memory = _draw_graph_in_memory()
 
             await (
-                telegram_custom_api.send_document_from_buffer(
+                custom_telegram_api.send_document_from_buffer(
                     chat_id=chat_id,
                     photo=graph_in_memory,
                     caption=(

@@ -13,10 +13,10 @@ async def main():
         telegram_server_url=os.environ['TELEGRAM_SERVER_URL'],
         token=os.environ['BOT_TOKEN']
     )
-    telegram_custom_api = CustomTelegramApi(telegram_bot_client)
+    custom_telegram_api = CustomTelegramApi(telegram_bot_client)
 
     while True:
-        last_updates_raw_response = await telegram_custom_api.get_next_update(
+        last_updates_raw_response = await custom_telegram_api.get_next_update(
             forget_previous_updates=True
         )
 

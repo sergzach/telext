@@ -14,10 +14,10 @@ async def main():
         telegram_server_url=os.environ['TELEGRAM_SERVER_URL'],
         token=os.environ['BOT_TOKEN']
     )
-    telegram_custom_api = CustomTelegramApi(telegram_bot_client)
+    custom_telegram_api = CustomTelegramApi(telegram_bot_client)
 
     while True:
-        last_updates_raw_response = await telegram_custom_api.get_next_update(
+        last_updates_raw_response = await custom_telegram_api.get_next_update(
             forget_previous_updates=True
         )
 
@@ -35,7 +35,7 @@ async def main():
             )
 
             with open(image_path, 'rb') as photo:
-                await telegram_custom_api.send_document_from_buffer(
+                await custom_telegram_api.send_document_from_buffer(
                     chat_id=chat_id,
                     photo=photo,
                     caption=f'Picture (from disk) as answer to your message.',
@@ -49,7 +49,7 @@ async def main():
 
             with open(document_path, 'rb') as document:
                 await (
-                    telegram_custom_api.send_document_from_buffer(
+                    custom_telegram_api.send_document_from_buffer(
                         chat_id=chat_id,
                         document=document,
                         caption=(

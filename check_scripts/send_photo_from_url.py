@@ -13,10 +13,10 @@ async def main():
         telegram_server_url=os.environ['TELEGRAM_SERVER_URL'],
         token=os.environ['BOT_TOKEN']
     )
-    telegram_custom_api = CustomTelegramApi(telegram_bot_client)
+    custom_telegram_api = CustomTelegramApi(telegram_bot_client)
 
     while True:
-        last_updates_raw_response = await telegram_custom_api.get_next_update(
+        last_updates_raw_response = await custom_telegram_api.get_next_update(
             forget_previous_updates=True
         )
 
@@ -27,7 +27,7 @@ async def main():
 
             chat_id = the_only_message['chat']['id']
 
-            await telegram_custom_api.send_photo_from_image_url(
+            await custom_telegram_api.send_photo_from_image_url(
                 chat_id=chat_id,
                 url=os.environ['CHECK_SCRIPTS_IMAGE_URL'],
                 caption=f'Picture as answer to your message.',
