@@ -1,5 +1,5 @@
 """
-Getting an incomming message and repeat it - back to the user.
+Sending from URL (in the Internet).
 """
 
 import asyncio
