@@ -5,7 +5,7 @@ Getting an incomming message and repeat it - back to the user.
 import asyncio
 import os
 
-from src.core import RawTelegramBot
+from telext import RawTelegramBot
 
 
 async def main():

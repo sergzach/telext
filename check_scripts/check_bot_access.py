@@ -1,7 +1,7 @@
 import asyncio
 import os
 
-from src.core import RawTelegramBot
+from telext import RawTelegramBot
 
 
 async def main():
