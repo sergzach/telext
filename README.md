@@ -68,7 +68,6 @@ def _draw_graph_in_memory() -> BytesIO:
     fig = px.scatter(x=[0, 1, 2, 3, 4], y=[0, 1, 4, 9, 16])
 
     buf.write(fig.to_image(format='png'))
-
     buf.seek(0)
 
     return buf
