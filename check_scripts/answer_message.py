@@ -29,7 +29,7 @@ async def main():
 
             await telegram_bot_client.send_message(
                 chat_id=chat_id,
-                text=f'I repeat your message: {text}.'
+                text=f'I am repeating your message: {text}.'
             )
 
         await asyncio.sleep(0.5)
