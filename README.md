@@ -7,6 +7,7 @@ It's easy to add new methods to small "blank" class — `TelegramCustomApi`, acc
 
 - **It's extendable**: you may inherits from `telext.TelegraCustomApiBase` or `telext.TelegramCustomApi`.
 - **It's small**: it's really tiny and easy-to-understand.
+- **It's asynchronious:** it uses asyncio/aiohttp.
 
 ##### A simple example of "echo" bot
 
