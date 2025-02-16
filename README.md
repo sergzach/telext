@@ -3,7 +3,12 @@ A small and extendable library to create telegram bots with minimum customizatio
 
 It's easy to add new methods to small "blank" class — `TelegramCustomApi`, according to fast-growing https://core.telegram.org/bots/api.
 
-### A simple example of "echo" bot
+### Key Features
+
+- **It's extendable**: You may inherits from `TelegraCustomApiBase` or `TelegramCustomApi`.
+- **It's small**: it's really tiny.
+
+##### A simple example of "echo" bot
 
 ```python
 import asyncio
@@ -44,7 +49,7 @@ if __name__ == '__main__':
     asyncio.get_event_loop().run_until_complete(main())
 ```
 
-### Draw graph in memory with plotly and send it to a customer
+##### Draw graph in memory with plotly and send it to a customer
 
 ```python
 import asyncio
