@@ -1,5 +1,5 @@
 """
-Sending from URL (in the Internet).
+Sending image from URL (in the Internet).
 """
 
 import asyncio
