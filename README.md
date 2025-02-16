@@ -19,7 +19,7 @@ from telext import RawTelegramBot, TelegramCustomApi
 
 async def main():
     telegram_bot_client = RawTelegramBot(
-        telegram_server_url=os.environ['TELEGRAM_SERVER_URL'],
+        telegram_server_url="https://api.telegram.org",
         token=os.environ['BOT_TOKEN']
     )
     telegram_custom_api = TelegramCustomApi(telegram_bot_client)
@@ -75,7 +75,7 @@ def _draw_graph_in_memory() -> BytesIO:
 
 async def main():
     telegram_bot_client = RawTelegramBot(
-        telegram_server_url=os.environ['TELEGRAM_SERVER_URL'],
+        telegram_server_url="https://api.telegram.org",
         token=os.environ['BOT_TOKEN']
     )
     telegram_custom_api = TelegramCustomApi(telegram_bot_client)
