@@ -1,7 +1,10 @@
+import io
 from dataclasses import dataclass
-from typing import Callable
+from io import BytesIO
+from typing import Callable, BinaryIO
 
 import aiohttp
+import requests
 
 
 @dataclass
@@ -21,6 +24,8 @@ class RawTelegramBot:
     # - message_reaction,
     # - message_reaction_count.
     _DEFAULT_ALLOWED_UPDATES = []
+
+    _MSG_SPECIFY_PHOTO_OR_DOCUMENT = 'Specify <photo> or <document>.'
 
     def __init__(self, telegram_server_url: str, token: str):
         self._telegram_server_url = telegram_server_url
@@ -45,6 +50,48 @@ class RawTelegramBot:
                     text = await resp.text()
 
                 return RawResponse(status=status, json=json, text=text)
+
+    async def post_multipart_with_response(
+            self,
+            *,
+            method: str,
+            **data
+    ) -> RawResponse:
+        async with aiohttp.ClientSession() as session:
+            method_url = self._get_method_url(method=method)
+
+            # photo = data.pop('photo')
+            # r = requests.post(method_url, data=data, files={"photo": photo})
+
+            async with session.post(method_url, data=data) as resp:
+                status = resp.status
+                text = None
+                json = None
+
+                try:
+                    json = await resp.json()
+                except Exception:
+                    text = await resp.text()
+
+                return RawResponse(status=status, json=json, text=text)
+
+            # with aiohttp.MultipartWriter('application/x-www-form-urlencoded') as mp_writer:
+            #
+            #     for key, value in data.items():
+            #         mp_writer.append_form([(key, value)])
+            #         #mp_writer.append(data['photo'], {'CONTENT-TYPE': 'image/gif'})
+            #
+            #     async with session.post(method_url, data=mp_writer) as resp:
+            #         status = resp.status
+            #         text = None
+            #         json = None
+            #
+            #         try:
+            #             json = await resp.json()
+            #         except Exception:
+            #             text = await resp.text()
+
+                    # return RawResponse(status=status, json=json, text=text)
 
     def _renew_last_update_id(self, raw_response: RawResponse):
         json = raw_response.json
@@ -99,7 +146,7 @@ class RawTelegramBot:
             self,
             *,
             chat_id,
-            url: str | None = None,
+            url: str,
             caption: str = None
     ):
         data = dict(photo=url)
@@ -113,4 +160,32 @@ class RawTelegramBot:
             **data
         )
 
+    async def send_document_from_buffer(
+            self,
+            *,
+            chat_id,
+            photo: BinaryIO | None = None,
+            document: BinaryIO | None = None,
+            caption: str = None
+    ) -> RawResponse:
+        if not any([photo, document]):
+            raise InputDataValidationError(self._MSG_SPECIFY_PHOTO_OR_DOCUMENT)
 
+        data = dict()
+        method = None
+
+        if photo is not None:
+            method = 'sendPhoto'
+            data.update(photo=photo)
+        elif document is not None:
+            method = 'sendDocument'
+            data.update(document=document)
+
+        if caption is not None:
+            data['caption'] = caption
+
+        return await self.post_multipart_with_response(
+            method=method,
+            chat_id=str(chat_id),
+            **data
+        )
