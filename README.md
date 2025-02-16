@@ -5,7 +5,7 @@ It's easy to add new methods to small "blank" class — `TelegramCustomApi`, acc
 
 ### Key Features
 
-- **It's extendable**: you may inherits from `telext.TelegraCustomApiBase` or `telext.TelegramCustomApi`.
+- **It's extendable**: you may inherits from `telext.CustomTelegramApiBase` or `telext.CustomTelegramApi`.
 - **It's small**: it's really tiny and easy-to-understand.
 - **It's asynchronious:** it works with `asyncio`.
 
