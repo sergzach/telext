@@ -1,5 +1,5 @@
 """
-Getting an incomming message and repeat it - back to the user.
+Send photo and PDF file as an answer to a message.
 """
 
 import asyncio
