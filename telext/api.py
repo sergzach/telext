@@ -66,13 +66,13 @@ class CustomTelegramApi(CustomTelegramApiBase):
             *,
             chat_id: int | str,
             text: str
-    ):
+    ) -> dict:
         data = dict(
             chat_id=chat_id,
             text=text
         )
 
-        await self._raw_telegram_bot.get_with_response(
+        return await self._raw_telegram_bot.get_with_response(
             method='sendMessage',
             **data
         )
@@ -123,4 +123,30 @@ class CustomTelegramApi(CustomTelegramApiBase):
             method=method,
             chat_id=str(chat_id),
             **data
+        )
+
+    async def pin_chat_message(
+        self,
+        *,
+        chat_id: int,
+        message_id: int,
+        disable_notification: bool = True
+    ):
+        return await self._raw_telegram_bot.post_with_response(
+            method='pinChatMessage',
+            chat_id=str(chat_id),
+            message_id=str(message_id),
+            disable_notification=disable_notification
+        )
+
+    async def unpin_chat_message(
+        self,
+        *,
+        chat_id: int,
+        message_id: int
+    ):
+        return await self._raw_telegram_bot.post_with_response(
+            method='unpinChatMessage',
+            chat_id=str(chat_id),
+            message_id=str(message_id)
         )
